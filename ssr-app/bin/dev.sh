@@ -5,7 +5,7 @@ echo "Starting development server..."
 echo Running from: $PWD
 
 echo "Installing dependencies..."
-uv sync
+uv sync --active
 
 echo "Migrating database..."
 uv run python manage.py migrate
