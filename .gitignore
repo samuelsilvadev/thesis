@@ -37,6 +37,3 @@ Thumbs.db
 
 # Build outputs
 csr-app/frontend/dist/
-
-# uv
-*.lock
