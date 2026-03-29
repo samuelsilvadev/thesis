@@ -1,19 +1,19 @@
-import { useState } from 'react';
-import { PostFormData } from '../types';
+import { useState, type FormEvent } from 'react';
+import type { NoteFormData } from '../types';
 
 interface Props {
-  initial?: PostFormData;
-  onSubmit: (data: PostFormData) => Promise<void>;
+  initial?: NoteFormData;
+  onSubmit: (data: NoteFormData) => Promise<void>;
   submitLabel: string;
 }
 
-export default function PostForm({ initial, onSubmit, submitLabel }: Props) {
+export default function NoteForm({ initial, onSubmit, submitLabel }: Props) {
   const [title, setTitle] = useState(initial?.title ?? '');
   const [content, setContent] = useState(initial?.content ?? '');
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError('');
     setSubmitting(true);
@@ -38,7 +38,7 @@ export default function PostForm({ initial, onSubmit, submitLabel }: Props) {
         style={{ padding: '0.5rem', fontSize: '1rem' }}
       />
       <textarea
-        placeholder="Content"
+        placeholder="Note content"
         value={content}
         onChange={(e) => setContent(e.target.value)}
         required

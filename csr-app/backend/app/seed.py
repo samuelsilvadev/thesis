@@ -1,6 +1,6 @@
 from .auth import hash_password
 from .database import Base, SessionLocal, engine
-from .models import Post, User
+from .models import Note, User
 
 
 def seed():
@@ -17,15 +17,15 @@ def seed():
     db.add_all([alice, bob])
     db.flush()
 
-    posts = [
-        Post(title="First Post", content="This is the first post content by Alice.", author_id=alice.id),
-        Post(title="Second Post", content="Bob shares his thoughts in this post.", author_id=bob.id),
-        Post(title="Third Post", content="Alice writes another interesting article.", author_id=alice.id),
+    notes = [
+        Note(title="Research Notes", content="Alice records her first observations for the thesis.", author_id=alice.id),
+        Note(title="Meeting Summary", content="Bob summarizes the latest project meeting.", author_id=bob.id),
+        Note(title="Security Checklist", content="Alice drafts a small checklist for the next tests.", author_id=alice.id),
     ]
-    db.add_all(posts)
+    db.add_all(notes)
     db.commit()
     db.close()
-    print("Database seeded with 2 users and 3 posts.")
+    print("Database seeded with 2 users and 3 notes.")
 
 
 if __name__ == "__main__":

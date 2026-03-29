@@ -12,11 +12,11 @@ export default function Navbar() {
 
   return (
     <nav style={{ display: 'flex', gap: '1rem', padding: '1rem', borderBottom: '1px solid #ccc', alignItems: 'center' }}>
-      <Link to="/" style={{ fontWeight: 'bold', marginRight: 'auto' }}>CSR Blog</Link>
-      <Link to="/">Posts</Link>
+      <Link to="/" style={{ fontWeight: 'bold', marginRight: 'auto' }}>CSR Notes</Link>
+      <Link to="/">Notes</Link>
       {user ? (
         <>
-          <Link to="/posts/new">New Post</Link>
+          <Link to="/notes/new">New Note</Link>
           <span>Hi, {user.username}</span>
           <button onClick={handleLogout}>Logout</button>
         </>

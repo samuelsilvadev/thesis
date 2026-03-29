@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import client from '../api/client';
 import { useAuth } from '../context/AuthContext';
-import { AuthResponse } from '../types';
+import type { AuthResponse } from '../types';
 
 export default function Register() {
   const [username, setUsername] = useState('');
@@ -12,7 +12,7 @@ export default function Register() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError('');
     try {

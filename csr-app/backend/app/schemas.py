@@ -29,29 +29,29 @@ class UserResponse(BaseModel):
     model_config = {"from_attributes": True}
 
 
-# --- Posts ---
-class PostCreate(BaseModel):
+# --- Notes ---
+class NoteCreate(BaseModel):
     title: str
     content: str
 
 
-class PostUpdate(BaseModel):
+class NoteUpdate(BaseModel):
     title: str
     content: str
 
 
-class PostAuthor(BaseModel):
+class NoteAuthor(BaseModel):
     id: int
     username: str
 
     model_config = {"from_attributes": True}
 
 
-class PostResponse(BaseModel):
+class NoteResponse(BaseModel):
     id: int
     title: str
     content: str
-    author: PostAuthor
+    author: NoteAuthor
     created_at: datetime
     updated_at: datetime
 

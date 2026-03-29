@@ -15,11 +15,11 @@ class User(Base):
     password_hash: Mapped[str] = mapped_column(String(128))
     created_at: Mapped[datetime] = mapped_column(default=lambda: datetime.now(timezone.utc))
 
-    posts: Mapped[list["Post"]] = relationship(back_populates="author", cascade="all, delete-orphan")
+    notes: Mapped[list["Note"]] = relationship(back_populates="author", cascade="all, delete-orphan")
 
 
-class Post(Base):
-    __tablename__ = "posts"
+class Note(Base):
+    __tablename__ = "notes"
 
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(String(200))
@@ -31,4 +31,4 @@ class Post(Base):
         onupdate=lambda: datetime.now(timezone.utc),
     )
 
-    author: Mapped["User"] = relationship(back_populates="posts")
+    author: Mapped["User"] = relationship(back_populates="notes")

@@ -2,10 +2,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
-import PostList from './pages/PostList';
-import PostDetail from './pages/PostDetail';
-import PostCreate from './pages/PostCreate';
-import PostEdit from './pages/PostEdit';
+import NoteList from './pages/NoteList';
+import NoteDetail from './pages/NoteDetail';
+import NoteCreate from './pages/NoteCreate';
+import NoteEdit from './pages/NoteEdit';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
@@ -15,12 +15,12 @@ export default function App() {
       <AuthProvider>
         <Navbar />
         <Routes>
-          <Route path="/" element={<PostList />} />
+          <Route path="/" element={<NoteList />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/posts/:id" element={<PostDetail />} />
-          <Route path="/posts/new" element={<ProtectedRoute><PostCreate /></ProtectedRoute>} />
-          <Route path="/posts/:id/edit" element={<ProtectedRoute><PostEdit /></ProtectedRoute>} />
+          <Route path="/notes/:id" element={<NoteDetail />} />
+          <Route path="/notes/new" element={<ProtectedRoute><NoteCreate /></ProtectedRoute>} />
+          <Route path="/notes/:id/edit" element={<ProtectedRoute><NoteEdit /></ProtectedRoute>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

@@ -5,16 +5,16 @@ export interface User {
   created_at: string;
 }
 
-export interface PostAuthor {
+export interface NoteAuthor {
   id: number;
   username: string;
 }
 
-export interface Post {
+export interface Note {
   id: number;
   title: string;
   content: string;
-  author: PostAuthor;
+  author: NoteAuthor;
   created_at: string;
   updated_at: string;
 }
@@ -35,7 +35,7 @@ export interface RegisterData {
   password: string;
 }
 
-export interface PostFormData {
+export interface NoteFormData {
   title: string;
   content: string;
 }
