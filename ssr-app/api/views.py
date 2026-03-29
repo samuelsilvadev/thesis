@@ -4,9 +4,9 @@ from rest_framework import permissions, status, viewsets
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 
-from posts.models import Post
+from posts.models import Note
 
-from .serializers import LoginSerializer, PostSerializer, RegisterSerializer, UserSerializer
+from .serializers import LoginSerializer, NoteSerializer, RegisterSerializer, UserSerializer
 
 
 class IsOwnerOrReadOnly(permissions.BasePermission):
@@ -60,9 +60,9 @@ def me_view(request):
     return Response(UserSerializer(request.user).data)
 
 
-class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.select_related('author').all()
-    serializer_class = PostSerializer
+class NoteViewSet(viewsets.ModelViewSet):
+    queryset = Note.objects.select_related('author').all()
+    serializer_class = NoteSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
     def perform_create(self, serializer):

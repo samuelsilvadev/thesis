@@ -2,55 +2,55 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import PostForm
-from .models import Post
+from .forms import NoteForm
+from .models import Note
 
 
-def post_list(request):
-    posts = Post.objects.select_related('author').all()
-    return render(request, 'posts/post_list.html', {'posts': posts})
+def note_list(request):
+    notes = Note.objects.select_related('author').all()
+    return render(request, 'notes/note_list.html', {'notes': notes})
 
 
-def post_detail(request, pk):
-    post = get_object_or_404(Post.objects.select_related('author'), pk=pk)
-    return render(request, 'posts/post_detail.html', {'post': post})
+def note_detail(request, pk):
+    note = get_object_or_404(Note.objects.select_related('author'), pk=pk)
+    return render(request, 'notes/note_detail.html', {'note': note})
 
 
 @login_required
-def post_create(request):
+def note_create(request):
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = NoteForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.save()
-            return redirect('post_detail', pk=post.pk)
+            note = form.save(commit=False)
+            note.author = request.user
+            note.save()
+            return redirect('note_detail', pk=note.pk)
     else:
-        form = PostForm()
-    return render(request, 'posts/post_form.html', {'form': form, 'action': 'Create'})
+        form = NoteForm()
+    return render(request, 'notes/note_form.html', {'form': form, 'action': 'Create'})
 
 
 @login_required
-def post_edit(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    if post.author != request.user:
-        return HttpResponseForbidden("You can only edit your own posts.")
+def note_edit(request, pk):
+    note = get_object_or_404(Note, pk=pk)
+    if note.author != request.user:
+        return HttpResponseForbidden("You can only edit your own notes.")
     if request.method == 'POST':
-        form = PostForm(request.POST, instance=post)
+        form = NoteForm(request.POST, instance=note)
         if form.is_valid():
             form.save()
-            return redirect('post_detail', pk=post.pk)
+            return redirect('note_detail', pk=note.pk)
     else:
-        form = PostForm(instance=post)
-    return render(request, 'posts/post_form.html', {'form': form, 'action': 'Edit'})
+        form = NoteForm(instance=note)
+    return render(request, 'notes/note_form.html', {'form': form, 'action': 'Edit'})
 
 
 @login_required
-def post_delete(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    if post.author != request.user:
-        return HttpResponseForbidden("You can only delete your own posts.")
+def note_delete(request, pk):
+    note = get_object_or_404(Note, pk=pk)
+    if note.author != request.user:
+        return HttpResponseForbidden("You can only delete your own notes.")
     if request.method == 'POST':
-        post.delete()
-        return redirect('post_list')
-    return render(request, 'posts/post_confirm_delete.html', {'post': post})
+        note.delete()
+        return redirect('note_list')
+    return render(request, 'notes/note_confirm_delete.html', {'note': note})

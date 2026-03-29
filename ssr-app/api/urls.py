@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from . import views
 
 router = DefaultRouter()
-router.register(r'posts', views.PostViewSet)
+router.register(r'notes', views.NoteViewSet)
 
 urlpatterns = [
     path('auth/register', views.register_view, name='api_register'),

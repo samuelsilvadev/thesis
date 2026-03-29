@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}SSR Blog{% endblock %}</title>
+    <title>{% block title %}SSR Notes{% endblock %}</title>
     <style>
         body { font-family: sans-serif; margin: 0; padding: 0; }
         nav { display: flex; gap: 1rem; padding: 1rem; border-bottom: 1px solid #ccc; align-items: center; }
         nav a:first-child { font-weight: bold; margin-right: auto; }
         .container { max-width: 700px; margin: 2rem auto; padding: 0 1rem; }
         .error { color: red; }
-        .post-card { border: 1px solid #ddd; padding: 1rem; border-radius: 4px; margin-bottom: 1rem; }
-        .post-meta { color: #666; margin: 0.5rem 0; }
+        .note-card { border: 1px solid #ddd; padding: 1rem; border-radius: 4px; margin-bottom: 1rem; }
+        .note-meta { color: #666; margin: 0.5rem 0; }
         form p { margin: 0.5rem 0; }
         input, textarea { padding: 0.5rem; font-size: 1rem; width: 100%; box-sizing: border-box; }
         button, input[type="submit"] { padding: 0.5rem 1rem; font-size: 1rem; cursor: pointer; }
@@ -20,10 +20,10 @@
 </head>
 <body>
     <nav>
-        <a href="{% url 'post_list' %}">SSR Blog</a>
-        <a href="{% url 'post_list' %}">Posts</a>
+        <a href="{% url 'note_list' %}">SSR Notes</a>
+        <a href="{% url 'note_list' %}">Notes</a>
         {% if user.is_authenticated %}
-            <a href="{% url 'post_create' %}">New Post</a>
+            <a href="{% url 'note_create' %}">New Note</a>
             <span>Hi, {{ user.username }}</span>
             <form method="post" action="{% url 'logout' %}" style="margin:0">
                 {% csrf_token %}

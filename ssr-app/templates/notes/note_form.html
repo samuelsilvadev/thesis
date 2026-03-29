@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}{{ action }} Post{% endblock %}
+{% block title %}{{ action }} Note{% endblock %}
 
 {% block content %}
-<h1>{{ action }} Post</h1>
+<h1>{{ action }} Note</h1>
 {% if form.errors %}
     {% for field, errors in form.errors.items %}
         {% for error in errors %}
@@ -14,7 +14,7 @@
 <form method="post">
     {% csrf_token %}
     <p><input type="text" name="title" placeholder="Title" value="{{ form.title.value|default:'' }}" required></p>
-    <p><textarea name="content" placeholder="Content" rows="8" required>{{ form.content.value|default:'' }}</textarea></p>
-    <p><button type="submit">{{ action }} Post</button></p>
+    <p><textarea name="content" placeholder="Note content" rows="8" required>{{ form.content.value|default:'' }}</textarea></p>
+    <p><button type="submit">{{ action }} Note</button></p>
 </form>
 {% endblock %}

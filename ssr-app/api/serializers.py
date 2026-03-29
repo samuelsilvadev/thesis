@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from posts.models import Post
+from posts.models import Note
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -21,16 +21,16 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField()
 
 
-class PostAuthorSerializer(serializers.ModelSerializer):
+class NoteAuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username']
 
 
-class PostSerializer(serializers.ModelSerializer):
-    author = PostAuthorSerializer(read_only=True)
+class NoteSerializer(serializers.ModelSerializer):
+    author = NoteAuthorSerializer(read_only=True)
 
     class Meta:
-        model = Post
+        model = Note
         fields = ['id', 'title', 'content', 'author', 'created_at', 'updated_at']
         read_only_fields = ['author', 'created_at', 'updated_at']

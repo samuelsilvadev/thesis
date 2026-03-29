@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ note.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ note.title }}</h1>
+<p class="note-meta">
+    By {{ note.author.username }} &middot; {{ note.created_at|date:"M d, Y" }}
+    {% if note.updated_at != note.created_at %}
+        &middot; Updated {{ note.updated_at|date:"M d, Y" }}
+    {% endif %}
+</p>
+<div style="white-space: pre-wrap; margin: 1rem 0;">{{ note.content }}</div>
+{% if user == note.author %}
+<div class="actions">
+    <a href="{% url 'note_edit' note.pk %}"><button>Edit</button></a>
+    <a href="{% url 'note_delete' note.pk %}"><button style="color: red;">Delete</button></a>
+</div>
+{% endif %}
+<p><a href="{% url 'note_list' %}">Back to notes</a></p>
+{% endblock %}
